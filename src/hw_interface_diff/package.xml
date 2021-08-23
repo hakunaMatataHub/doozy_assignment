@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+<name>hw_interface_diff</name>
+<version>0.1.0</version>
+<description> doozy_assignment</description>
+<maintainer email="bajaj590@gmail.com">Kewal bajaj</maintainer>
+<license>BSD</license>
+<author email="bajaj590@gmail.com">Kewal Bajaj</author>
+<buildtool_depend>catkin</buildtool_depend>
+<depend>roscpp</depend>
+<depend>diff_drive_controller</depend>
+<depend>hardware_interface</depend>
+<depend>geometry_msgs</depend>
+<depend>controller_manager</depend>
+<depend>std_msgs</depend>
+
+</package>
