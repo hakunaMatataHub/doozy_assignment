@@ -1,0 +1,5 @@
+robot_position_controller:
+  type: "position_controllers/JointGroupPositionController"
+  joints:
+   - a
+   - b

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+
+
+<rosparam command="load" file="$(find hw_interface_diff)/config/control1.yaml" />
+
+<arg name="node_start_delay" default="10.0" />  
+
+<node name="controlNode" pkg="hw_interface_diff" type="controlNode" output="screen"/>
+
+<node name="robot_diff_control_spawner" pkg="controller_manager" type="spawner"
+        args="robot_position_controller" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+
+</launch>

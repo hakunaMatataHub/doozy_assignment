@@ -25,6 +25,11 @@ public:
  
     hardware_interface::JointStateHandle state_handle_R("R", &pos[1], &vel[1], &eff[1]);
     jnt_state_interface.registerHandle(state_handle_R);
+    hardware_interface::JointStateHandle state_handle_a("a", &pos[2], &vel[2], &eff[2]);
+    jnt_state_interface.registerHandle(state_handle_a);
+    
+    hardware_interface::JointStateHandle state_handle_b("b", &pos[3], &vel[3], &eff[3]);
+    jnt_state_interface.registerHandle(state_handle_b);
  
     // Register the JointStateInterface containing the read only joints
     // with this robot's hardware_interface::RobotHW.
@@ -42,6 +47,17 @@ public:
     // Register the JointPositionInterface containing the read/write joints
     // with this robot's hardware_interface::RobotHW.
     registerInterface(&jnt_vel_interface);
+
+
+    hardware_interface::JointHandle pos_handle_a(jnt_state_interface.getHandle("a"), &cmd[2]);
+    jnt_pos_interface.registerHandle(pos_handle_a);
+ 
+    hardware_interface::JointHandle pos_handle_b(jnt_state_interface.getHandle("b"), &cmd[3]);
+    jnt_pos_interface.registerHandle(pos_handle_b);
+ 
+    // Register the JointPositionInterface containing the read/write joints
+    // with this robot's hardware_interface::RobotHW.
+    registerInterface(&jnt_pos_interface);
  
     return true;
   }
@@ -71,13 +87,13 @@ public:
   // To only read joint positions, avoid conflicts using 
   // hardware_interface::JointStateInterface.
   hardware_interface::VelocityJointInterface jnt_vel_interface;
- 
+ hardware_interface::PositionJointInterface jnt_pos_interface;
   // Data member array to store the controller commands which are sent to the 
   // robot's resources (joints, actuators)
-  double cmd[2];
+  double cmd[4];
  
   // Data member arrays to store the state of the robot's resources (joints, sensors)
-  double pos[2];
-  double vel[2];
-  double eff[2];
+  double pos[4];
+  double vel[4];
+  double eff[4];
 };
